@@ -17,4 +17,6 @@ jobs:
         with:
           name: artifact_name
           path: ~/foo.txt
+      - name: another actions file...
+        uses: ./.github/actions/someaction
 
