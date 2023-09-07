@@ -1,0 +1,9 @@
+name: some action
+
+on:
+  workflow_dispatch
+  workflow_call
+jobs:
+  some_job:
+    steps:
+      run: echo "ohai ${GITHUB_ACTOR}"
