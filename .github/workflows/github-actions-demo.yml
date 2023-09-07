@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: another actions file...
-        uses: ./.github/actions/someaction      
+        uses: ./.github/actions/someaction.yaml      
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
