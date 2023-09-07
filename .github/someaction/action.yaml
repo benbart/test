@@ -1,10 +1,9 @@
 name: some action
 
-on:
-  workflow_dispatch
-  workflow_call
-jobs:
-  some_job:
-    runs-on: ubuntu-latest
-    steps:
-      run: echo "ohai ${GITHUB_ACTOR}"
+runs:
+  using: "composite"
+  steps: 
+    - name: Echo
+      shell: bash
+      run: |
+        echo "ohai ${GITHUB_ACTOR}"
