@@ -13,12 +13,26 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
-      - run: echo "hi from ${RUNNER_NAME}" > ~/foo.txt
+      - run: echo "hi from ${RUNNER_NAME}" > ~/foo.txt && date >> ~/foo.txt
+        if: runner.os != 'Windows'
       - name: Uploading build artfact
         uses: actions/upload-artifact@v3.1.3
         with:
           name: artifact_name
           path: ~/foo.txt
-          
+          retention-days: 2
 
+  downloading-the-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download that artifact
+        uses: actions/download-artifact@v3
+        with:
+          needs: Uploading build artfact
+          name: artifact_name
+      - name: show the artifact
+        shell: bash
+        run: |
+          contents=`cat foo.txt`
+          echo "the contents of foo: ${contents}"
 
