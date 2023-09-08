@@ -23,12 +23,12 @@ jobs:
           retention-days: 2
 
   downloading-the-artifact:
+    needs: running-the-thing
     runs-on: ubuntu-latest
     steps:
       - name: Download that artifact
         uses: actions/download-artifact@v3
         with:
-          needs: Uploading build artfact
           name: artifact_name
       - name: show the artifact
         shell: bash
